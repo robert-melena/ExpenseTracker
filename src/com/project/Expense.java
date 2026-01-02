@@ -15,8 +15,8 @@ public class Expense {
     //payment method and notes
     private String paymentMethod;
 
-    public Expense(LocalDateTime date, String category, int amount, String paymentMethod) {
-        this.date = date;
+    public Expense(String category, int amount, String paymentMethod) {
+        this.date = LocalDateTime.now();
         this.category = category;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
@@ -57,7 +57,7 @@ public class Expense {
 
 
     //to format the date better
-    private String getDate(){
+    private String getFormattedDate(){
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         return this.date.format(formatterDate);
     }
@@ -81,7 +81,7 @@ public class Expense {
                 center("CATEGORY", 10) +
                 center("AMOUNT", 10) +
                 center("PAYMENT", 10)  +"|\n" +
-                center(getDate(),10) +
+                center(getFormattedDate(),10) +
                 center(this.category,10) +
                 center(Integer.toString(this.amount),10) +
                 center(this.paymentMethod,10) + "|";
