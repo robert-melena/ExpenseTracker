@@ -75,15 +75,10 @@ public class Expense {
 
     @Override
     public String toString(){
-//        COLUMN header will have to go in list class will make later
         return
-                center("DATE",10) +
-                center("CATEGORY", 10) +
-                center("AMOUNT", 10) +
-                center("PAYMENT", 10)  +"|\n" +
-                center(getFormattedDate(),10) +
-                center(this.category,10) +
-                center(Integer.toString(this.amount),10) +
-                center(this.paymentMethod,10) + "|";
+                center(getFormattedDate(),20) +
+                center(this.category,20) +
+                center(Integer.toString(this.amount),20) +
+                center(this.paymentMethod,20) + "|";
     }
 }

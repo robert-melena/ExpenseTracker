@@ -6,9 +6,6 @@ public class App {
         ExpenseUI ui = new ExpenseUI();
         ui.start();
 
-        Expense expense = new Expense("Food",145,"CARD");
-        System.out.println(expense);
-
     }
 
 }
