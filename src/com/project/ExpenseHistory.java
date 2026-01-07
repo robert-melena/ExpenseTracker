@@ -18,7 +18,12 @@ public class ExpenseHistory {
 
     public void viewHistory(){
         this.columns();
-        this.expenses.forEach(expense -> System.out.println(expense));
+        for(int i = 0; i < this.expenses.size(); i++){
+            System.out.println(expenses.get(i));
+            if(i == this.expenses.size() - 1){
+                System.out.println("-".repeat(85));
+            }
+        }
     }
 
     private  String center(String text, int width){
@@ -30,7 +35,7 @@ public class ExpenseHistory {
     }
 
     private void columns(){
-        System.out.print(center("DATE",20) +
+        System.out.print("-".repeat(85) + "\n" + center("DATE",20) +
                 center("CATEGORY", 20) +
                 center("AMOUNT", 20) +
                 center("PAYMENT", 20)  +"|\n");

@@ -3,8 +3,11 @@ package com.project;
 public class App {
     public static void main(String[] args) {
 
-        ExpenseUI ui = new ExpenseUI();
-        ui.start();
+        //Next thing to do will be to add Account so users can view their own expenses
+        //then create another class to actually start entire application
+        ExpenseUI expenseUi = new ExpenseUI();
+        expenseUi.start();
+
 
     }
 

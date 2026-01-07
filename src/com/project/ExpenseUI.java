@@ -48,6 +48,7 @@ public class ExpenseUI {
         System.out.println("1. Add Transaction");
         System.out.println("2. Browse Transaction History");
         System.out.println("3. Exit");
+        System.out.print("Select (1,2, or 3): " );
     }
 
     private void getTransactionInfo(){
