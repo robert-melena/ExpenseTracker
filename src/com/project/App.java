@@ -1,6 +1,6 @@
 package com.project;
 
-import com.project.UI.ExpenseUI;
+import com.project.ui.ExpenseUI;
 
 public class App {
     public static void main(String[] args) {

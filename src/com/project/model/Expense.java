@@ -1,4 +1,4 @@
-package com.project.service;
+package com.project.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -35,7 +35,7 @@ public class Expense {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -45,14 +45,6 @@ public class Expense {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
-    }
-
-
-
-    //If users would like to see the time of their purchases
-    public String getTime(){
-        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
-        return this.date.format(formatterTime);
     }
 
 

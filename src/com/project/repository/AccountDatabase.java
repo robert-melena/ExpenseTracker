@@ -1,6 +1,6 @@
 package com.project.repository;
 
-import com.project.service.Account;
+import com.project.model.Account;
 
 import java.util.HashMap;
 import java.util.Map;

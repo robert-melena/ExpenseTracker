@@ -1,18 +1,20 @@
-package com.project.UI;
+package com.project.ui;
 
-import com.project.service.ExpenseHistory;
+import com.project.model.Expense;
+import com.project.service.ExpenseService;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ExpenseUI {
 
     private Scanner scanner;
-    private ExpenseHistory history;
+    private ExpenseService expenseService;
 
     public ExpenseUI(){
         this.scanner = new Scanner(System.in);
-        this.history = new ExpenseHistory();
+        this.expenseService = new ExpenseService();
     }
 
 //    START EXPENSE UI
@@ -42,7 +44,7 @@ public class ExpenseUI {
         if(option == 1){
             getTransactionInfo();
         }else if(option == 2){
-            this.history.viewHistory();
+            printHistory(expenseService.getExpenses());
         }
     }
 
@@ -66,16 +68,55 @@ public class ExpenseUI {
 
 //        NOW HANDLE AMOUNT INPUT and PAYMENT INPUT NOTE <<<<------------------
         System.out.print("\nEnter Amount: ");
-        double amount = scanner.nextDouble();
+        double amount = getAmount();
         scanner.nextLine(); //eat up the newline
 
-        System.out.print("\nEnter Payment Method: ");
+        System.out.print("\nEnter Payment Method (CARD or CASH): ");
         String paymentMethod = scanner.nextLine().toUpperCase();
         System.out.println("\n\n");
 
-        this.history.addTransaction(category,amount,paymentMethod);
+        this.expenseService.addTransaction(category,amount,paymentMethod);
     }
 
+    private  String center(String text, int width){
+        int padding = width - text.length(); //6
+        int left = padding / 2; // 6 / 2 =  3
+        int right = padding - left; //6 - 3 = 3
+        return   "|" + " ".repeat(left) + text +  " ".repeat(right);
+
+    }
+
+    private void columns(){
+        System.out.print("-".repeat(85) + "\n" + center("DATE",20) +
+                center("CATEGORY", 20) +
+                center("AMOUNT", 20) +
+                center("PAYMENT", 20)  +"|\n");
+    }
+
+
+    private void printHistory(List<Expense> expenses){
+        if(expenses.isEmpty()){
+            System.out.println("No transactions found....");
+            return;
+        }
+        this.columns();
+        for(int i = 0; i < expenses.size(); i++){
+            System.out.println(expenses.get(i));
+        }
+        System.out.println("-".repeat(85));
+    }
+
+
+    //-------HANDLE AMOUNT INPUT-------------
+    private double getAmount(){
+        while(true){
+            try{
+                return scanner.nextDouble();
+            }catch (InputMismatchException ime){
+                System.out.println("Invalid amount. Enter a number: ");
+            }
+        }
+    }
 
 
     //---------HANDLE CATEGORY INPUT-------------

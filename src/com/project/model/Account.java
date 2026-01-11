@@ -1,14 +1,16 @@
-package com.project.service;
+package com.project.model;
+
+import com.project.service.ExpenseService;
 
 public class Account {
     private String username;
     private String password;
-    private ExpenseHistory history;
+    private ExpenseService history;
 
     public Account (String username,String password){
         this.username = username;
         this.password = password;
-        this.history = new ExpenseHistory();
+        this.history = new ExpenseService();
     }
 
     public boolean validateCredentials(String username, String password){
@@ -31,11 +33,11 @@ public class Account {
         this.password = password;
     }
 
-    public ExpenseHistory getHistory() {
+    public ExpenseService getHistory() {
         return history;
     }
 
-    public void setHistory(ExpenseHistory history) {
+    public void setHistory(ExpenseService history) {
         this.history = history;
     }
 }
