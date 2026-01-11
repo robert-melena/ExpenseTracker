@@ -1,5 +1,7 @@
 package com.project;
 
+import com.project.UI.ExpenseUI;
+
 public class App {
     public static void main(String[] args) {
 

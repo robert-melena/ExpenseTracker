@@ -1,4 +1,4 @@
-package com.project;
+package com.project.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class ExpenseHistory {
         this.expenses = new ArrayList<>();
     }
 
-    public void addTransaction(String category, int amount,String paymentMethod){
+    public void addTransaction(String category, double amount,String paymentMethod){
         this.expenses.add(new Expense(category,amount,paymentMethod));
     }
 

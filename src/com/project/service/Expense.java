@@ -1,4 +1,4 @@
-package com.project;
+package com.project.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,11 +11,11 @@ public class Expense {
     //to hold category type
     private String category;
     //amount for transaction
-    private int amount;
+    private double amount;
     //payment method and notes
     private String paymentMethod;
 
-    public Expense(String category, int amount, String paymentMethod) {
+    public Expense(String category, double amount, String paymentMethod) {
         this.date = LocalDateTime.now();
         this.category = category;
         this.amount = amount;
@@ -31,7 +31,7 @@ public class Expense {
         this.category = category;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -78,7 +78,7 @@ public class Expense {
         return
                 center(getFormattedDate(),20) +
                 center(this.category,20) +
-                center(Integer.toString(this.amount),20) +
+                center(Double.toString(this.amount),20) +
                 center(this.paymentMethod,20) + "|";
     }
 }
