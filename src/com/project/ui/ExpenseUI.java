@@ -1,8 +1,11 @@
 package com.project.ui;
 
+import com.project.model.Category;
 import com.project.model.Expense;
+import com.project.model.Payment;
 import com.project.service.ExpenseService;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -63,19 +66,18 @@ public class ExpenseUI {
     }
 
     private void getTransactionInfo(){
-        System.out.print("Enter Category (FOOD,ENTERTAINMENT,TRAVEL,ETC.) : ");
+        //category input
         String category = getCategory();
 
-//        NOW HANDLE AMOUNT INPUT and PAYMENT INPUT NOTE <<<<------------------
-        System.out.print("\nEnter Amount: ");
+        //amount input
         double amount = getAmount();
         scanner.nextLine(); //eat up the newline
 
-        System.out.print("\nEnter Payment Method (CARD or CASH): ");
-        String paymentMethod = scanner.nextLine().toUpperCase();
-        System.out.println("\n\n");
+        //payment input
+        String paymentMethod = getPaymentMethod();
 
-        this.expenseService.addTransaction(category,amount,paymentMethod);
+        this.expenseService.addExpense(category,amount,paymentMethod);
+        System.out.println("---Payment Successfully Added---");
     }
 
     private  String center(String text, int width){
@@ -106,14 +108,34 @@ public class ExpenseUI {
         System.out.println("-".repeat(85));
     }
 
+    //-------HANDLE PAYMENT METHOD INPUT-------------
+    private String getPaymentMethod(){
+        System.out.print("\nEnter Payment Method (CARD,CASH or APPLEPAY): ");
+        String paymentMethod = scanner.nextLine().toUpperCase();
+
+        while(!isValidPaymentMethod(paymentMethod)){
+            System.out.print("\nEnter Payment Method (CARD,CASH or APPLEPAY): ");
+            paymentMethod = scanner.nextLine().toUpperCase();
+        }
+        return paymentMethod;
+    }
+
+    //-------HANDLE PAYMENT METHOD INPUT-------------
+    private boolean isValidPaymentMethod(String paymentMethod){
+        return Arrays.stream(Payment.values()).anyMatch(payment -> payment.toString().equalsIgnoreCase(paymentMethod));
+    }
+
 
     //-------HANDLE AMOUNT INPUT-------------
     private double getAmount(){
         while(true){
             try{
+                System.out.print("\nEnter Amount: ");
                 return scanner.nextDouble();
             }catch (InputMismatchException ime){
                 System.out.println("Invalid amount. Enter a number: ");
+                scanner.nextLine(); // clear bad input
+
             }
         }
     }
@@ -121,8 +143,9 @@ public class ExpenseUI {
 
     //---------HANDLE CATEGORY INPUT-------------
     private String getCategory(){
+        System.out.print("Enter Category (FOOD,ENTERTAINMENT,TRAVEL,ETC.) : ");
         String category = scanner.nextLine().toUpperCase();
-        while(isNumeric(category)){
+        while(isNumeric(category) || !isValidCategory(category)){
             System.out.print("Enter Category (FOOD,ENTERTAINMENT,TRAVEL,ETC.) : ");
             category = scanner.nextLine().toUpperCase();
         }
@@ -140,4 +163,12 @@ public class ExpenseUI {
             return false;
         }
     }
+
+    //---------HANDLE CATEGORY INPUT-------------
+    private boolean isValidCategory(String category){
+        return Arrays.asList(Category.values())
+                .stream()
+                .anyMatch(cat -> cat.toString().equalsIgnoreCase(category));
+    }
+
 }

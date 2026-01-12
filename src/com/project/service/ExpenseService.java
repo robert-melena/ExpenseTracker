@@ -14,7 +14,7 @@ public class ExpenseService {
         this.expenses = new ArrayList<>();
     }
 
-    public void addTransaction(String category, double amount,String paymentMethod){
+    public void addExpense(String category, double amount, String paymentMethod){
         this.expenses.add(new Expense(category,amount,paymentMethod));
     }
 
