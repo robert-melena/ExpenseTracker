@@ -67,14 +67,14 @@ public class ExpenseUI {
 
     private void getTransactionInfo(){
         //category input
-        String category = getCategory();
+        Category category = getCategory();
 
         //amount input
         double amount = getAmount();
         scanner.nextLine(); //eat up the newline
 
-        //payment input
-        String paymentMethod = getPaymentMethod();
+        //payment input DO THIS NEXT
+        Payment paymentMethod = getPaymentMethod();
 
         this.expenseService.addExpense(category,amount,paymentMethod);
         System.out.println("---Payment Successfully Added---");
@@ -142,14 +142,14 @@ public class ExpenseUI {
 
 
     //---------HANDLE CATEGORY INPUT-------------
-    private String getCategory(){
+    private Category getCategory(){
         System.out.print("Enter Category (FOOD,ENTERTAINMENT,TRAVEL,ETC.) : ");
         String category = scanner.nextLine().toUpperCase();
         while(isNumeric(category) || !isValidCategory(category)){
             System.out.print("Enter Category (FOOD,ENTERTAINMENT,TRAVEL,ETC.) : ");
             category = scanner.nextLine().toUpperCase();
         }
-        return category;
+        return Category.valueOf(category);
     }
     //---------HANDLE CATEGORY INPUT-------------
     private boolean isNumeric(String string){

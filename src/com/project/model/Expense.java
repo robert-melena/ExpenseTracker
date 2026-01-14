@@ -9,13 +9,13 @@ public class Expense {
     //to hold date of transaction date and time
     private LocalDateTime date;
     //to hold category type
-    private String category;
+    private Category category;
     //amount for transaction
     private double amount;
     //payment method and notes
     private String paymentMethod;
 
-    public Expense(String category, double amount, String paymentMethod) {
+    public Expense(Category category, double amount, String paymentMethod) {
         this.date = LocalDateTime.now();
         this.category = category;
         this.amount = amount;
@@ -23,11 +23,11 @@ public class Expense {
     }
 
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -69,7 +69,7 @@ public class Expense {
     public String toString(){
         return
                 center(getFormattedDate(),20) +
-                center(this.category,20) +
+                center(this.category.toString(),20) +
                 center(Double.toString(this.amount),20) +
                 center(this.paymentMethod,20) + "|";
     }

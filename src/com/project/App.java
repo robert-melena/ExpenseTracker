@@ -10,21 +10,8 @@ public class App {
         ExpenseUI expenseUi = new ExpenseUI();
         expenseUi.start();
 
-//        String category = "pizza";
-//
-//        for(Category cat : Category.values()){
-//            if(validCategory(category,cat)){
-//                System.out.println("Valid category!");
-//            }
-//        }
-//        System.out.println("Invalid category");
-
 
     }
-
-//    public static boolean validCategory(String str, Category category){
-//        return str.equalsIgnoreCase(category.toString());
-//    }
 
 }
 
