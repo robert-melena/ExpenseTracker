@@ -13,9 +13,9 @@ public class Expense {
     //amount for transaction
     private double amount;
     //payment method and notes
-    private String paymentMethod;
+    private Payment paymentMethod;
 
-    public Expense(Category category, double amount, String paymentMethod) {
+    public Expense(Category category, double amount, Payment paymentMethod) {
         this.date = LocalDateTime.now();
         this.category = category;
         this.amount = amount;
@@ -39,11 +39,11 @@ public class Expense {
         this.amount = amount;
     }
 
-    public String getPaymentMethod() {
+    public Payment getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(Payment paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -71,6 +71,6 @@ public class Expense {
                 center(getFormattedDate(),20) +
                 center(this.category.toString(),20) +
                 center(Double.toString(this.amount),20) +
-                center(this.paymentMethod,20) + "|";
+                center(this.paymentMethod.toString(),20) + "|";
     }
 }

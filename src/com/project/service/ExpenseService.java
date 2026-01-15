@@ -2,6 +2,7 @@ package com.project.service;
 
 import com.project.model.Category;
 import com.project.model.Expense;
+import com.project.model.Payment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class ExpenseService {
         this.expenses = new ArrayList<>();
     }
 
-    public void addExpense(Category category, double amount, String paymentMethod){
+    public void addExpense(Category category, double amount, Payment paymentMethod){
         this.expenses.add(new Expense(category,amount,paymentMethod));
     }
 
@@ -26,6 +27,4 @@ public class ExpenseService {
     public boolean isEmpty(){
         return expenses.isEmpty();
     }
-
-
 }

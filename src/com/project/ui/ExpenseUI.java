@@ -77,7 +77,7 @@ public class ExpenseUI {
         Payment paymentMethod = getPaymentMethod();
 
         this.expenseService.addExpense(category,amount,paymentMethod);
-        System.out.println("---Payment Successfully Added---");
+        System.out.println("---PAYMENT SUCCESSFULLY ADDED---");
     }
 
     private  String center(String text, int width){
@@ -109,7 +109,7 @@ public class ExpenseUI {
     }
 
     //-------HANDLE PAYMENT METHOD INPUT-------------
-    private String getPaymentMethod(){
+    private Payment getPaymentMethod(){
         System.out.print("\nEnter Payment Method (CARD,CASH or APPLEPAY): ");
         String paymentMethod = scanner.nextLine().toUpperCase();
 
@@ -117,7 +117,7 @@ public class ExpenseUI {
             System.out.print("\nEnter Payment Method (CARD,CASH or APPLEPAY): ");
             paymentMethod = scanner.nextLine().toUpperCase();
         }
-        return paymentMethod;
+        return Payment.valueOf(paymentMethod);
     }
 
     //-------HANDLE PAYMENT METHOD INPUT-------------
